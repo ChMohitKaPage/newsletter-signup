@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <link rel="stylesheet" href="style.css">
+  <title>Frontend Mentor | Newsletter sign-up form with success message</title>
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution {
+      font-size: 11px;
+      text-align: center;
+    }
+
+    .attribution a {
+      color: hsl(228, 45%, 44%);
+    }
+  </style>
+</head>
+
+<body>
+
+  <main>
+    <div class="left-container">
+      <div class="left">
+        <h1>Stay updated!</h1>
+        <p>Join 60,000+ product managers receiving monthly updates on:</p>
+        <ul>
+          <li><img src="assets/images/icon-list.svg" alt=""> Product discovery and building what matters</li>
+          <li><img src="assets/images/icon-list.svg" alt=""> Measuring to ensure updates are a success</li>
+          <li><img src="assets/images/icon-list.svg" alt=""> And much more!</li>
+        </ul>
+        <form action="" onsubmit="submitHandler(event)">
+          <label for="">Email address<span style="margin-left: 150px; color: hsl(4, 100%, 67%); display: none;"
+              id="error-text">Valid email required</span></label>
+          <input id="form" placeholder="email@company.com" name="" id="">
+          <label for=""></label>
+          <button>Subscribe to monthly newsletter</button>
+        </form>
+      </div>
+    </div>
+    <div class="right">
+      <img src="assets/images/illustration-sign-up-mobile.svg" alt="" id="img-2">
+      <img src="assets/images/illustration-sign-up-desktop.svg" alt="" id="img-1">
+    </div>
+  </main>
+  <div class="modal-container">
+    <div class="modal">
+      <img src="assets/images/icon-success.svg" alt="">
+      <h1>Thanks for subscribing!</h1>
+      <p>A confirmation email has been sent to <b>ash@loremcompany.com</b>. 
+        Please open it and click the button inside to confirm your subscription.</p>
+      <button onclick="clickHandler()">Dismiss message</button>
+    </div>
+  </div>
+
+  </div>
+</body>
+<script>
+  function submitHandler(event) {
+    event.preventDefault();
+    const txt = document.getElementById('form').value
+    if (!validateEmail(txt)) {
+      document.getElementById('error-text').style.display = 'inline';
+      document.getElementById('form').classList.add('error-state');
+    }
+    else{
+      document.getElementById('form').value = '';
+      document.getElementById('error-text').style.display = 'none';
+      document.getElementById('form').classList.remove('error-state');
+      document.querySelector('main').style.display = 'none'
+      document.querySelector('.modal-container').style.display = 'flex'
+    }
+  }
+  function clickHandler(){
+    document.querySelector('main').style.display = 'flex'
+      document.querySelector('.modal-container').style.display = 'none'
+  }
+  function validateEmail(email) {
+    var re = /\S+@\S+\.\S+/;
+    return re.test(email);
+  }
+</script>
+
+</html>
